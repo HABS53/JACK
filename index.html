@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر JACK</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .offer { border: 1px solid #ccc; padding: 10px; margin: 10px; }
+        .offer h3 { margin: 0; }
+    </style>
+</head>
+<body>
+    <h1>مرحبا بك في متجر JACK</h1>
+    <div>
+        <a href="/register">تسجيل</a> | 
+        <a href="/login">دخول</a>
+    </div>
+    <h2>العروض المتوفرة</h2>
+    {% for offer in offers %}
+    <div class="offer">
+        <h3>{{ offer.title }}</h3>
+        <p>{{ offer.description }}</p>
+        <p>السعر: {{ offer.price }}$</p>
+        <form method="POST" action="/buy/{{ offer.id }}">
+            <input type="hidden" name="user_id" value="1"> <!-- استبدلها بـ ID المستخدم -->
+            <button type="submit">شراء</button>
+        </form>
+    </div>
+    {% endfor %}
+</body>
+</html>
